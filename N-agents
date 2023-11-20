@@ -3,9 +3,9 @@ clc
 Nmax = 41; % Max number of agents
 
 % Initialize Matrix of agents
-
 OccupancyMatrix = [];
 
+% Start Looping 
 for agent = 1:Nmax
     
     
@@ -19,10 +19,8 @@ for agent = 1:Nmax
     
     % Possible sequences of events for Unoccupied state
     transitionName_unocc = ["UU","UO"];
-       
     
     i = 0;
-  
     steps = 7*24*6; % Set simulation lenght intended as steps. 
 
         
@@ -42,9 +40,7 @@ for agent = 1:Nmax
             if currState == 1 % occupied 
                 randomIndex = randi(numel(occupiedVect));
                 % Set pseudo-random number generator. 
-                % Other options available at: 
-                % https://it.mathworks.com/help/matlab/ref/randstream.html
-                s = RandStream('mlfg6331_64');
+                s = RandStream('mlfg6331_64'); % Other options available at https://it.mathworks.com/help/matlab/ref/randstream.html
                 % Generate pseudo-random sample given the probabilities
                 nextState = randsample(s,transitionName_occ,1,true,occupiedVect);
         
@@ -58,9 +54,7 @@ for agent = 1:Nmax
             elseif currState == 0 % unoccupied
                 randomIndex = randi(numel(unoccupiedVect));
                 % Set pseudo-random number generator. 
-                % Other options available at: 
-                % https://it.mathworks.com/help/matlab/ref/randstream.html
-                s = RandStream('mlfg6331_64');
+                s = RandStream('mlfg6331_64'); % Other options available at https://it.mathworks.com/help/matlab/ref/randstream.html
                 % Generate pseudo-random sample given the probabilities
                 nextState = randsample(s,transitionName_unocc,1,true,unoccupiedVect);
         
@@ -73,7 +67,6 @@ for agent = 1:Nmax
             end
             i = i + 1;
            
-
         end
 
         OccupancyMatrix = [OccupancyMatrix;OccupancyList];
